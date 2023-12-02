@@ -6,7 +6,8 @@
   "author": "Alan Rutherford <alan@propelleraero.com.au>",
   "license": "MIT",
   "scripts": {
-    "start": "sh -c 'ts-node ./src/day${0}/index.ts'"
+    "start": "sh -c 'ts-node ./src/day${0}/index.ts'",
+    "make": "sh -c 'cp -r src/template src/day${0}'"
   },
   "dependencies": {
     "@types/node": "^20.10.0",
