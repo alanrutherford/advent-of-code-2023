@@ -30,21 +30,14 @@ const getFullNumber = (grid: string[][], row: number, column: number) => {
       leftMost++;
       foundLeftMost = true;
     }
-    // if()
   }
   while (!foundRightMost) {
     rightMost++;
     if (!isNumber(grid[row][rightMost])) {
-      // rightMost--;
       foundRightMost = true;
     }
   }
   return parseInt(grid[row].join("").substring(leftMost, rightMost));
-  // return {
-  //   fullNumber: parseInt(grid[row].join("").substring(leftMost, rightMost)),
-  //   start: leftMost,
-  //   end: rightMost,
-  // };
 };
 const getAdjacentValues = (grid: string[][], row: number, column: number) => {
   const adjacentNumbers: number[] = [];
