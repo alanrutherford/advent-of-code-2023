@@ -26,6 +26,7 @@ export default function partB(): void {
       };
     });
   let score = 0;
+
   input.forEach((game) => {
     let matches = 0;
     for (const num of game.winningNumbers) {
@@ -40,5 +41,5 @@ export default function partB(): void {
   for (const game of input) {
     score += game.copies;
   }
-  console.log(`Part B: 8172507 == ${score} is ${8172507 === score}`);
+  console.log(`Part B: ${score}`);
 }
