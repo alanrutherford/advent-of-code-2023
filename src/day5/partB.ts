@@ -60,5 +60,5 @@ export default function partB(): void {
     }
   }
 
-  console.log(`Part B: ${location}`);
+  console.log(`Part B: 69841803 == ${location} => ${69841803 == location}`);
 }
