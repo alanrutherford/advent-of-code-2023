@@ -18,7 +18,10 @@ export default function partA(): void {
   for (let i = 0; i < input[0].length; i++) {
     let timesBeatenDistance = 0;
     for (let j = 0; j < input[0][i]; j++) {
-      if (j * (input[0][i] - j) > input[1][i]) {
+      const charge = j;
+      const speed = input[0][i] - charge;
+      const distance = charge * speed;
+      if (distance > input[1][i]) {
         timesBeatenDistance++;
       }
     }
