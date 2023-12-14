@@ -4,13 +4,19 @@ function getInput() {
   return readFileSync(join(__dirname, "./input.txt"), "utf-8");
 }
 
-export default function partA(): void {
+export default function partB(): void {
   const input = getInput()
     .split("\n")
     .map((line) => {
       const [brokenRecord, orderRecord] = line.split(" ");
-      return { brokenRecord, orderRecord };
+      // return { brokenRecord, orderRecord };
+
+      return {
+        brokenRecord: `${brokenRecord}?${brokenRecord}?${brokenRecord}?${brokenRecord}?${brokenRecord}`,
+        orderRecord: `${orderRecord},${orderRecord},${orderRecord},${orderRecord},${orderRecord}`,
+      };
     });
+  const validated = new Set<string>();
   const validateString = (fixedRecord: string, orderRecord: string) => {
     const verification = [...fixedRecord.matchAll(/(#)\1{0,}/g)].map(
       (detection) => detection[0]
@@ -20,6 +26,7 @@ export default function partA(): void {
     );
   };
   const validateOptions = (
+    index: number,
     crawlingString: string,
     orderRecord: string
   ): number => {
@@ -33,7 +40,10 @@ export default function partA(): void {
       .reduce((a, b) => a + b);
     // console.log({ numberOfBrokenStringsSoFar, numberOfBrokenSprings });
     if (numberOfBrokenStringsSoFar === numberOfBrokenSprings) {
-      return validateString(crawlingString, orderRecord) ? 1 : 0;
+      if (validateString(crawlingString, orderRecord)) {
+        validated.has;
+      }
+      return 0;
     }
     if ((crawlingString.match(/\?/g) || []).length === 0) {
       return 0;
@@ -48,18 +58,24 @@ export default function partA(): void {
     const optionBroken = crawlingString.replace("?", "#");
     // console.log(optionBroken);
     return (
-      validateOptions(optionEmpty, orderRecord) +
-      validateOptions(optionBroken, orderRecord)
+      validateOptions(index, optionEmpty, orderRecord) +
+      validateOptions(index, optionBroken, orderRecord)
     );
   };
   let validOptions = 0;
   for (let i = 0; i < input.length; i++) {
-    // console.log(i);
+    const numberOfBrokenSprings = input[i].orderRecord
+      .split(",")
+      .map((num) => parseInt(num))
+      .reduce((a, b) => a + b);
+    console.log(numberOfBrokenSprings);
     validOptions += validateOptions(
+      i,
       input[i].brokenRecord,
       input[i].orderRecord
     );
   }
+  // console.log(input[0].brokenRecord.replace("?", "#"));
 
-  console.log(`Part A: ${validOptions}`);
+  console.log(`Part B: ${validOptions}`);
 }
