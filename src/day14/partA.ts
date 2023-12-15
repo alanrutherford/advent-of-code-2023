@@ -6,7 +6,6 @@ function getInput() {
 
 export default function partA(): void {
   const input = getInput().split("\n");
-  //array of empty strings to push results into
   let tilted: string[] = Array(input.length).join(".").split(".");
   for (let j = 0; j < input[0].length; j++) {
     const column1 = input.map((line) => line[j]).join("");
